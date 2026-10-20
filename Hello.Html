@@ -3,7 +3,51 @@
     <meta charset="UTF-8">
     <title> BMI Physiotherapy </title>
     <script>
-    
+                    function validateLogin() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+
+      if (username === "DharuiBmi" && password === "Dharui1979" ) {
+        alert("Login Successful! Welcome Mr Dhari");
+        window.location.href="Hello.Html";
+      }
+        else if  (username === "ZainabBmi" && password === "Zainab1979" ) {
+        alert("Login Successful! Welcome Ms Zainab H.D");
+        window.location.href="Hello.Html";
+      }
+      else if ((username === "JoeBmi" && password === "Joe1979")) { 
+        alert("Login successful! Welcome Mr Joe");
+        window.location.href="hi.html";
+      }
+      else if ((username === "AmalBmi" && password === "Amal1979")) { 
+        alert("Login successful! Welcome Ms Amal");
+        window.location.href="hi.html";
+      }
+      else if ((username === "FatimaBmi" && password === "Fatima1979")) { 
+        alert("Login successful! Welcome ms Fatima");
+        window.location.href="hi.html";
+      }      else if ((username === "MariamBmi" && password === "Mariam1979")) { 
+        alert("Login successful! Welcome Ms Mariam ");
+        window.location.href="hi.html";
+      }
+      else if ((username === "AsimBmi" && password === "Asim1979")) { 
+        alert("Login successful! Welcome Mr Asim");
+        window.location.href="hi.html";
+      }
+       else if (username === "AzharBmi" && password === "Azhar1979" ) {
+        alert("Login successful! Welcome Ms Azhar");
+        window.location.href="hi.html";
+      }
+            else if (username === "NasmaBmi" && password === "Nasma1979" ) {
+        alert("Login successful! Welcome Ms Nasma");
+        window.location.href="hi.html";
+      }
+      else {
+        alert("please Chick your Username or Password and Try Again");
+      }
+      }
+       
     </script>
 <style>
  .h1 {
