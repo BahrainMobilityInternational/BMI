@@ -5,13 +5,8 @@
 
 <style>
 body{
-    font-family:Arial;
+    font-family: Arial, sans-serif;
     margin:20px;
-}
-
-input{
-    padding:8px;
-    width:250px;
 }
 
 table{
@@ -22,20 +17,32 @@ td{
     padding:8px;
 }
 
+input{
+    padding:8px;
+    width:250px;
+}
+
 button{
-    padding:10px;
+    padding:10px 15px;
+    margin-right:10px;
     background:green;
     color:white;
     border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:darkgreen;
 }
 </style>
-</head>
 
+</head>
 <body>
 
 <h2>Procurement Request</h2>
 
 <table>
+
 <tr>
 <td>Item Name</td>
 <td><input type="text" id="item"></td>
@@ -60,6 +67,7 @@ button{
 <td>Total BHD</td>
 <td><input type="text" id="totalbhd" readonly></td>
 </tr>
+
 </table>
 
 <br>
@@ -71,55 +79,46 @@ button{
 
 function calculate(){
 
-let usd =
-parseFloat(document.getElementById("usd").value) || 0;
+    let usd = parseFloat(document.getElementById("usd").value) || 0;
+    let vat = parseFloat(document.getElementById("vat").value) || 0;
 
-let vat =
-parseFloat(document.getElementById("vat").value) || 0;
+    let totalUSD = usd + (usd * vat / 100);
+    let totalBHD = totalUSD * 0.376;
 
-let totalUSD = usd + (usd * vat / 100);
-
-let totalBHD = totalUSD * 0.376;
-
-document.getElementById("totalusd").value =
-totalUSD.toFixed(2);
-
-document.getElementById("totalbhd").value =
-totalBHD.toFixed(3);
-
+    document.getElementById("totalusd").value = totalUSD.toFixed(2);
+    document.getElementById("totalbhd").value = totalBHD.toFixed(3);
 }
 
 function saveData(){
 
-calculate();
+    calculate();
 
-fetch("https://script.google.com/macros/s/AKfycbwnHFwpHW0-UguFh_Kwb31tbWjTrFslUOElg8Tn8KKLoo_AMHrlD3HsKJJZABBdDX8E3Q/exec", {
+    const data = {
 
-method:"POST",
+        item: document.getElementById("item").value,
+        usd: document.getElementById("usd").value,
+        vat: document.getElementById("vat").value,
+        totalUSD: document.getElementById("totalusd").value,
+        totalBHD: document.getElementById("totalbhd").value
 
-body:JSON.stringify({
+    };
 
-item:
-document.getElementById("item").value,
-
-usd:
-document.getElementById("usd").value,
-
-vat:
-document.getElementById("vat").value,
-
-totalUSD:
-document.getElementById("totalusd").value,
-
-totalBHD:
-document.getElementById("totalbhd").value
-
-})
-
-})
-.then(response=>response.text())
-.then(data=>alert("Saved Successfully"))
-.catch(error=>alert("Error Saving Data"));
+    fetch("YOUR_WEBAPP_URL", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log(result);
+        alert("Saved Successfully");
+    })
+    .catch(error => {
+        console.error(error);
+        alert("Error Saving Data");
+    });
 
 }
 </script>
