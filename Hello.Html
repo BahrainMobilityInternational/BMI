@@ -2,8 +2,11 @@
 <html>
     <meta charset="UTF-8">
     <title> BMI Physiotherapy </title>
-    <script>
-                    function validateLogin() {
+   <head>
+        <meta charset="UTF-8 ">
+        <title img src="download.png">Bmi</title>
+        <script>
+                function validateLogin() {
       var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
 
@@ -47,8 +50,83 @@
         alert("please Chick your Username or Password and Try Again");
       }
       }
+        </script>
+        <style>
+          
+            body{
+                margin: 0 ; 
+                padding :0;
+            
+            }
+            .Username {
+
+                
+                position :absolute ;
+                top : 50% ;
+                left : 50% ; 
+                transform : Translate(-50%,50%);
+                
+            }
+            .h1,h2 {
+                position :absolute ;
+                top : 38.5%;
+                left : 50%; 
+                transform : Translate(-50%,50%);
+            }
+          .Image {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 65vh;
+          }
+         body {
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+         }
+          
+        
+        </style>
+        <div class="Image">
+            <img  Src="download.png" alt> 
+            </div>
+
+            
+
+    </head>
+    <body>
        
-    </script>
+        
+        <div Class="h1 , h2 , h3">
+            <h1 style = "font-family:Verdana">
+               H.H Sh Zain bint Khalid Al Khalifa Physiotherapy & Rehab Center 
+            </h1>
+            <h2>
+                Enter Your Username & Password 
+            </h2>
+            
+        </div>
+
+        <div class="Username">
+
+        <form>
+
+            <label Style = "font-size: 25px;" for="username">Username:</label>
+
+            <input style = "background-color:lightgray; border-radius:15px;" type="text" id="username" name="username" required ><br><br>
+            <label  Style = "font-size: 25px;"for="password">Password:</label>
+
+            <input  style = "background-color:lightgray; border-radius:15px;" type="password" id="password" name="password" required><br><br>
+            
+           <a href="Home.html"></a> <input Style = "border-radius: 15px; font-size: 20px; " type="button" name ="Submit" value="Login" onclick="validateLogin() " >
+          
+
+            <input Style = "border-radius: 15px; font-size: 20px; " type ="reset" name ="Reset"/>
+
+          </form>
+           </div>
+       </form>
+    </body>
 <style>
  .h1 {
     position: absolute;
