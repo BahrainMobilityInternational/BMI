@@ -111,10 +111,9 @@ function saveData(){
         body: JSON.stringify(data)
     })
     .then(response => response.text())
-    .then(result => {
-        console.log(result);
-        alert("Saved Successfully");
-    })
+   .then(result => {
+    alert(result);
+})
     .catch(error => {
         console.error(error);
         alert("Error Saving Data");
