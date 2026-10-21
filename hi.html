@@ -6,7 +6,11 @@
     <style>
         body{
             font-family: Arial, sans-serif;
-            margin:20px;
+            margin: 20px;
+        }
+
+        h2{
+            color: #222;
         }
 
         table{
@@ -18,21 +22,21 @@
         }
 
         input{
-            width:250px;
-            padding:8px;
+            width: 250px;
+            padding: 8px;
         }
 
         button{
-            padding:10px 15px;
-            background:green;
-            color:white;
-            border:none;
-            cursor:pointer;
-            margin-right:10px;
+            padding: 10px 15px;
+            background: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
         }
 
         button:hover{
-            background:darkgreen;
+            background: darkgreen;
         }
     </style>
 </head>
@@ -76,17 +80,14 @@
 
 function calculate() {
 
-    let usd = parseFloat(document.getElementById("usd").value) || 0;
-    let vat = parseFloat(document.getElementById("vat").value) || 0;
+    let usd = Number(document.getElementById("usd").value) || 0;
+    let vat = Number(document.getElementById("vat").value) || 0;
 
     let totalUSD = usd + (usd * vat / 100);
     let totalBHD = totalUSD * 0.376;
 
-    document.getElementById("totalusd").value =
-        totalUSD.toFixed(2);
-
-    document.getElementById("totalbhd").value =
-        totalBHD.toFixed(3);
+    document.getElementById("totalusd").value = totalUSD.toFixed(2);
+    document.getElementById("totalbhd").value = totalBHD.toFixed(3);
 }
 
 function saveData() {
@@ -101,17 +102,20 @@ function saveData() {
         totalBHD: document.getElementById("totalbhd").value
     };
 
-fetch("https://script.google.com/macros/s/AKfycbxo5C6MZkuaCOTLi29SbCQM_aURUZ2IW9xGWSsEXBTu038f4ebssnjCgowivTjtOFWOSw/exec", {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify(data)
-})
-.then(() => {
-    alert("Saved Successfully");
-})
-.catch(error => {
-    alert(error);
-});
+    fetch("https://script.google.com/macros/s/AKfycbxo5C6MZkuaCOTLi29SbCQM_aURUZ2IW9xGWSsEXBTu038f4ebssnjCgowivTjtOFWOSw/exec", {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(data)
+    })
+    .then(() => {
+        alert("Saved Successfully");
+    })
+    .catch((error) => {
+        alert("Error: " + error);
+        console.log(error);
+    });
+
+}
 
 </script>
 
