@@ -8,6 +8,11 @@
 <h2>Student Registration</h2>
 
 <form id="studentForm">
+    <input type="text" id="requester" placeholder="Requester Name">
+<input type="text" id="department" placeholder="Department">
+<input type="text" id="item" placeholder="Item Name">
+<input type="number" id="quantity" placeholder="Quantity">
+<input type="number" id="price" placeholder="Price USD">
     <input type="text" id="name" placeholder="Name" required>
     <br><br>
 
@@ -27,6 +32,11 @@ document.getElementById("studentForm").addEventListener("submit", function(e) {
   method: "POST",
   mode: "no-cors",
   body: JSON.stringify({
+    requester: document.getElementById("requester").value,
+    department: document.getElementById("department").value,
+    item: document.getElementById("item").value,
+    quantity: document.getElementById("quantity").value,
+    price: document.getElementById("price").value,
     name: document.getElementById("name").value,
     age: document.getElementById("age").value
   })
