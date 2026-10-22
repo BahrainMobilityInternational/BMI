@@ -25,6 +25,9 @@ document.getElementById("studentForm").addEventListener("submit", function(e) {
 
     fetch("https://script.google.com/macros/s/AKfycbyMmexf3ODHld00RbjPCtqgE5tmNHFd-7b4Q63aAFN42YOsNYd4tP0MnTCMh2qXbZ9N/exec", {
         method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify({
             name: document.getElementById("name").value,
             age: document.getElementById("age").value
@@ -33,10 +36,11 @@ document.getElementById("studentForm").addEventListener("submit", function(e) {
     .then(response => response.text())
     .then(data => {
         document.getElementById("result").innerHTML =
-            "Data Saved Successfully!";
+            "✅ Data Saved Successfully!";
     })
     .catch(error => {
-        console.error(error);
+        document.getElementById("result").innerHTML =
+            "❌ Error: " + error;
     });
 });
 </script>
