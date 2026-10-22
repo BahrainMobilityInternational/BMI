@@ -23,25 +23,22 @@
 document.getElementById("studentForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    fetch("https://script.google.com/macros/s/AKfycbyMmexf3ODHld00RbjPCtqgE5tmNHFd-7b4Q63aAFN42YOsNYd4tP0MnTCMh2qXbZ9N/exec", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            name: document.getElementById("name").value,
-            age: document.getElementById("age").value
-        })
-    })
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("result").innerHTML =
-            "✅ Data Saved Successfully!";
-    })
-    .catch(error => {
-        document.getElementById("result").innerHTML =
-            "❌ Error: " + error;
-    });
+   fetch("https://script.google.com/macros/s/AKfycbyMmexf3ODHld00RbjPCtqgE5tmNHFd-7b4Q63aAFN42YOsNYd4tP0MnTCMh2qXbZ9N/exec", {
+  method: "POST",
+  mode: "no-cors",
+  body: JSON.stringify({
+    name: document.getElementById("name").value,
+    age: document.getElementById("age").value
+  })
+})
+.then(() => {
+  document.getElementById("result").innerHTML =
+    "✅ Submitted";
+})
+.catch(error => {
+  document.getElementById("result").innerHTML =
+    "❌ " + error;
+});
 });
 </script>
 
