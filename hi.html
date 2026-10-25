@@ -101,9 +101,8 @@ function saveData() {
     	totalBHD: document.getElementById("totalbhd").value
 }};
 
-document.getElementById("studentForm").addEventListener("submit", function(e) {
-    e.preventDefault();
 
+	
    fetch("https://script.google.com/macros/s/AKfycbyMmexf3ODHld00RbjPCtqgE5tmNHFd-7b4Q63aAFN42YOsNYd4tP0MnTCMh2qXbZ9N/exec", {
   method: "POST",
   mode: "no-cors",
@@ -119,6 +118,8 @@ document.getElementById("studentForm").addEventListener("submit", function(e) {
     "❌ " + error;
 });
 });
+	document.getElementById("studentForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
 
 </script>
