@@ -3,104 +3,28 @@
 <head>
     <title>Student Form</title>
 </head>
-	<style>
-    	body{
-        	font-family: Arial, sans-serif;
-        	margin: 20px;
-    	}
-    	h2{
-        	color: #222;
-    	}
-    	table{
-        	border-collapse: collapse;
-    	}
-    	td{
-        	padding: 8px;
-    	}
-    	input{
-        	width: 250px;
-        	padding: 8px;
-    	}
-    	button{
-        	padding: 10px 15px;
-        	background: green;
-        	color: white;
-        	border: none;
-        	cursor: pointer;
-        	margin-right: 10px;
-    	}
-    	button:hover{
-        	background: darkgreen;
-    	}
-	</style>
 <body>
 
-<h2>Procurement Form</h2>
-<table>
-    <tr>
-        <td>Department Name</td>
-        <td><input type="text"id=Department></td>
-    </tr>
-	<tr>
-    	<td>Item Name</td>
-    	<td><input type="text" id="item"></td>
-	</tr>
-	<tr>
-    	<td>USD Price</td>
-    	<td><input type="number" id="usd"></td>
-	</tr>
-	<tr>
-    	<td>VAT %</td>
-    	<td><input type="number" id="vat" value="10"></td>
-	</tr>
-	<tr>
-    	<td>Total USD</td>
-    	<td><input type="text" id="totalusd" readonly></td>
-	</tr>
-	<tr>
-    	<td>Total BHD</td>
-    	<td><input type="text" id="totalbhd" readonly></td>
-	</tr>
-</table>
-<p>
-    Hello Here you Can Calculate  
-    <br>
-     price x VAT% By 10% 
-</p>
-<br>
-<p>
+<h2>Student Registration</h2>
 
-    <button onclick="calculate()">Calculate</button>
-    <button onclick="saveData()">Save</button>
-    </p>
+<form id="studentForm">
+    <input type="text" id="requester" placeholder="Requester Name">
+<input type="text" id="department" placeholder="Department">
+<input type="text" id="item" placeholder="Item Name">
+<input type="number" id="quantity" placeholder="Quantity">
+<input type="number" id="price" placeholder="Price USD">
+    <input type="text" id="name" placeholder="Name" required>
+    <br><br>
+
+    <input type="number" id="age" placeholder="Age" required>
+    <br><br>
+
+    <button type="submit">Save</button>
 </form>
-
-
 
 <p id="result"></p>
 
 <script>
-
-
-function calculate() {
-	let usd = Number(document.getElementById("usd").value) || 0;
-	let vat = Number(document.getElementById("vat").value) || 0;
-	let totalUSD = usd + (usd * vat / 100);
-	let totalBHD = totalUSD * 0.376;
-	document.getElementById("totalusd").value = totalUSD.toFixed(2);
-	document.getElementById("totalbhd").value = totalBHD.toFixed(3);
-}
-function saveData() {
-	calculate();
-	const data = {
-        Department: document/getElementById("Department").value,
-    	item: document.getElementById("item").value,
-    	usd: document.getElementById("usd").value,
-    	vat: document.getElementById("vat").value,
-    	totalUSD: document.getElementById("totalusd").value,
-    	totalBHD: document.getElementById("totalbhd").value
-}};
-
 document.getElementById("studentForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -108,8 +32,14 @@ document.getElementById("studentForm").addEventListener("submit", function(e) {
   method: "POST",
   mode: "no-cors",
   body: JSON.stringify({
+    requester: document.getElementById("requester").value,
+    department: document.getElementById("department").value,
+    item: document.getElementById("item").value,
+    quantity: document.getElementById("quantity").value,
+    price: document.getElementById("price").value,
+    name: document.getElementById("").value,
+    age: document.getElementById("").value
   })
-  
 })
 .then(() => {
   document.getElementById("result").innerHTML =
@@ -120,8 +50,6 @@ document.getElementById("studentForm").addEventListener("submit", function(e) {
     "❌ " + error;
 });
 });
-
-
 </script>
 
 </body>
