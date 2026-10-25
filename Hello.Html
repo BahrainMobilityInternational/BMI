@@ -1,162 +1,209 @@
-<!DOCTYPE html> 
-<html>
-    <meta charset="UTF-8">
-    <title> BMI Physiotherapy </title>
-   <head>
-        <meta charset="UTF-8 ">
-        <title img src="download.png">Bmi</title>
-      
-        <style>
-          
-            body{
-                margin: 0 ; 
-                padding :0;
-            
-            }
-            .Username {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DH.STREAM</title>
 
-                
-                position :absolute ;
-                top : 50% ;
-                left : 50% ; 
-                transform : Translate(-50%,50%);
-                
-            }
-            .h1,h2 {
-                position :absolute ;
-                top : 38.5%;
-                left : 50%; 
-                transform : Translate(-50%,50%);
-            }
-          .Image {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 65vh;
-          }
-         body {
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100vh;
-         }
-          
-        
-        </style>
-        <div class="Image">
-            <img  Src="download.png" alt> 
-            </div>
-
-            
-
-    </head>
 <style>
- .h1 {
-    position: absolute;
-    top : 13%;
-    left: 26.5%;
-    transform: translate(50%,50);
- }
- .ARAB {
-    position: absolute;
-    top : 9%;
-    left: 30%;
-    transform: translate(50%,50);
- }
- .p {
-    position: absolute;
-    top : 20%;
-    left: 13.5%;
-    transform: translate(20%,50%);
- }
- .Hello {
-    
-    position: absolute;
-    top: 40%;
-    left: 18.5%;
-    transform: translate(10%,50%);
- }
- .ptr {
-    
-    position: absolute;
-    top: 38%;
-    left: 20%;
-    transform: translate(10%,50%);
- }
- .In {
-    display: flex;
-          justify-content: left;
-          align-items: left;
-          top: 5%;
-          left: 5%;
-          size: 5%;
-          transform: translate(12% , 5%);
- 
- }
- .EEhello {
-    position: absolute;
-    top : 30%;
-    left: -25%;
-    transform: translate(60%,50%);
- }
- body {
-    background-repeat: no-repeat;
-    background-size: cover;
 
- }
- .YY{
-    position: absolute;
-    top: 30%;
-    left: 44%;
-    transform: translate(60%,50%);
- }
- .vv{
-    position: absolute;
-    top: 60%;
-    left: 42%;
-    transform: translate(60%,50%);
- }
- .HHL{
-     
-    position: absolute;
-    top: 76%;
-    left: 20.05%;
-    transform: translate(10%,50%);
- }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,sans-serif;
+}
 
- 
+body{
+    background:#04123a;
+    color:white;
+}
+
+/* Sidebar */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:80px;
+    height:100vh;
+
+    background:#081a3e;
+
+    border-right:2px solid #00ffff;
+
+    transition:.4s;
+
+    overflow:hidden;
+}
+
+/* Expanded */
+
+.sidebar.active{
+    width:260px;
+}
+
+/* Logo */
+
+.logo{
+    height:80px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#00ffff;
+
+    font-size:28px;
+    font-weight:bold;
+
+    text-shadow:0 0 15px #00ffff;
+}
+
+/* Menu Button */
+
+.toggle{
+
+    position:absolute;
+
+    top:20px;
+    right:15px;
+
+    background:none;
+    border:none;
+
+    color:white;
+
+    font-size:28px;
+
+    cursor:pointer;
+}
+
+/* Links */
+
+.sidebar a{
+
+    display:flex;
+    align-items:center;
+
+    gap:15px;
+
+    color:white;
+    text-decoration:none;
+
+    padding:20px;
+
+    transition:.3s;
+}
+
+.sidebar a:hover{
+
+    background:rgba(0,255,255,.12);
+
+    color:#00ffff;
+}
+
+/* Hide labels */
+
+.label{
+    opacity:0;
+    white-space:nowrap;
+    transition:.2s;
+}
+
+.sidebar.active .label{
+    opacity:1;
+}
+
+/* Main */
+
+.main{
+
+    margin-left:80px;
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding:80px;
+
+    transition:.4s;
+}
+
+.main.shift{
+    margin-left:260px;
+}
+
+.main h1{
+
+    font-size:70px;
+
+    color:#00ffff;
+
+    text-shadow:
+    0 0 15px #00ffff,
+    0 0 35px #00ffff;
+}
+
+.main p{
+
+    margin-top:20px;
+    font-size:24px;
+}
+
 </style>
-    <body background="images.jpg">
-        <div Class = "EEhello">
-        <button style="border-radius:15px ;">
-            <a href = "file:///C:/Users/dharu/OneDrive/Desktop/Work%20Space%20Vs%20Code/Home.html">Logout</a>
+</head>
+<body>
+
+<div class="sidebar" id="sidebar">
+
+    <div class="logo">
+
+
+        <button class="toggle" onclick="toggleSidebar()">
+            ☰
         </button>
-        </div>
-        
-        <div class="vv">
-            <p style="font-size: 40px;"></p>
-        </div>
-        <div Class="YY">
-            <p>
-                <p style="font-size: 40px;"></p>
-            </p>
-           
-        </div>
-        <div Class = Hello>
-        <ul>
-            <p>
-             <button style="border-radius: 15px; font-size: 20px;">
-                 <a href="https://docs.google.com/spreadsheets/d/1Mgkhhl35s7j-rdbjDSXX0Gp5_lOISB0KOekvX_Zf41o/edit?gid=0#gid=0">Procurement Table</button></a>
-            <button style="border-radius:15px ;font-size: 20px">
-                <a href = "https://word.cloud.microsoft/open/onedrive/?docId=BFF9D9C6E4D0FDD6%21s920749c4cee94d0c8c8161e4bcc61921&driveId=BFF9D9C6E4D0FDD6">Word Procurement</a>
-            </button>
-            <button style="border-radius:15px ;font-size: 20px;">
-                <a href="https://docs.google.com/spreadsheets/d/1jNafS_izT8xn77O3FrDoxIMTVq12bvtC/edit?usp=sharing&ouid=102401937921505819015&rtpof=true&sd=true">Suppert By Good Word</a>
-            </button>
-        </p>
-        </ul>
-        </div>
-    </body>
+    </div>
+
+    <a href="hi.html">
+        <span class="label"> Data page </span>
+    </a>
+
+    <a href="#">
+ 
+        <span class="label">Dashboard</span>
+    </a>
+
+    <a href="#">
+ 
+        <span class="label">Dashboard</span>
+    </a>
+
+ 
+
+</div>
+
+<div class="main" id="main">
+
+    <h1>Dharui Dashboard</h1>
+
+    <p>Welcome to learning With Ai </p>
+
+</div>
+
+<script>
+
+function toggleSidebar(){
+
+    document.getElementById("sidebar")
+        .classList.toggle("active");
+
+    document.getElementById("main")
+        .classList.toggle("shift");
+}
+
+</script>
+
+</body>
 </html>
-
-
-
