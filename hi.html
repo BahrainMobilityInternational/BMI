@@ -1,55 +1,197 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Student Form</title>
+    <title>Purchase Request Form</title>
+
+    <style>
+        body{
+            font-family:Arial,sans-serif;
+            max-width:600px;
+            margin:auto;
+            padding:20px;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin:5px 0;
+            box-sizing:border-box;
+        }
+
+        button{
+            padding:12px;
+            width:100%;
+            background:#0078d7;
+            color:white;
+            border:none;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#005ea6;
+        }
+
+        #calculation{
+            margin-top:15px;
+            padding:15px;
+            border:1px solid #ddd;
+            border-radius:8px;
+            background:#f8f8f8;
+        }
+
+        .total{
+            color:green;
+            font-size:20px;
+            font-weight:bold;
+        }
+    </style>
 </head>
+
 <body>
 
-<h2>Student Registration</h2>
+<h2>Purchase Request Form</h2>
 
 <form id="studentForm">
-    <input type="text" id="requester" placeholder="Requester Name">
-<input type="text" id="department" placeholder="Department">
-<input type="text" id="item" placeholder="Item Name">
-<input type="number" id="quantity" placeholder="Quantity">
-<input type="number" id="price" placeholder="Price USD">
-    <input type="text" id="name" placeholder="Name" required>
-    <br><br>
 
-    <input type="number" id="age" placeholder="Age" required>
-    <br><br>
+    <input type="text" id="requester" placeholder="Requester Name" required>
+
+    <input type="text" id="department" placeholder="Department" required>
+
+    <input type="text" id="item" placeholder="Item Name" required>
+
+    <input type="number" id="quantity" placeholder="Quantity" min="1" required>
+
+    <input type="number" id="price" placeholder="Price USD" step="0.01" required>
+
+    <div id="calculation">
+        <h3>Live Calculation</h3>
+
+        <p>Subtotal USD: <strong id="subtotal">$0.00</strong></p>
+        <p>VAT (10%): <strong id="vat">$0.00</strong></p>
+        <p>Total USD: <strong id="totalusd">$0.00</strong></p>
+
+        <p class="total">
+            Total BHD:
+            <span id="totalbhd">0.000 BHD</span>
+        </p>
+    </div>
+
+    <br>
 
     <button type="submit">Save</button>
+
 </form>
 
 <p id="result"></p>
 
 <script>
-document.getElementById("studentForm").addEventListener("submit", function(e) {
+
+const VAT_RATE = 0.10;
+const USD_TO_BHD = 0.376;
+
+function updateCalculation(){
+
+    let quantity =
+        Number(document.getElementById("quantity").value) || 0;
+
+    let price =
+        Number(document.getElementById("price").value) || 0;
+
+    let subtotalUSD = quantity * price;
+    let vatUSD = subtotalUSD * VAT_RATE;
+    let totalUSD = subtotalUSD + vatUSD;
+    let totalBHD = totalUSD * USD_TO_BHD;
+
+    document.getElementById("subtotal").innerText =
+        "$" + subtotalUSD.toFixed(2);
+
+    document.getElementById("vat").innerText =
+        "$" + vatUSD.toFixed(2);
+
+    document.getElementById("totalusd").innerText =
+        "$" + totalUSD.toFixed(2);
+
+    document.getElementById("totalbhd").innerText =
+        totalBHD.toFixed(3) + " BHD";
+}
+
+document.getElementById("quantity")
+.addEventListener("input", updateCalculation);
+
+document.getElementById("price")
+.addEventListener("input", updateCalculation);
+
+document.getElementById("studentForm")
+.addEventListener("submit", function(e){
+
     e.preventDefault();
 
-   fetch("https://script.google.com/macros/s/AKfycbyMmexf3ODHld00RbjPCtqgE5tmNHFd-7b4Q63aAFN42YOsNYd4tP0MnTCMh2qXbZ9N/exec", {
-  method: "POST",
-  mode: "no-cors",
-  body: JSON.stringify({
-    requester: document.getElementById("requester").value,
-    department: document.getElementById("department").value,
-    item: document.getElementById("item").value,
-    quantity: document.getElementById("quantity").value,
-    price: document.getElementById("price").value,
-    name: document.getElementById("name").value,
-    age: document.getElementById("age").value
-  })
-})
-.then(() => {
-  document.getElementById("result").innerHTML =
-    "✅ Submitted";
-})
-.catch(error => {
-  document.getElementById("result").innerHTML =
-    "❌ " + error;
+    let quantity =
+        Number(document.getElementById("quantity").value);
+
+    let price =
+        Number(document.getElementById("price").value);
+
+    let subtotalUSD = quantity * price;
+    let vatUSD = subtotalUSD * VAT_RATE;
+    let totalUSD = subtotalUSD + vatUSD;
+    let totalBHD = totalUSD * USD_TO_BHD;
+
+    fetch(
+    "https://script.google.com/macros/s/AKfycbyMmexf3ODHld00RbjPCtqgE5tmNHFd-7b4Q63aAFN42YOsNYd4tP0MnTCMh2qXbZ9N/exec",
+    {
+        method:"POST",
+        body:JSON.stringify({
+
+            requester:
+            document.getElementById("requester").value,
+
+            department:
+            document.getElementById("department").value,
+
+            item:
+            document.getElementById("item").value,
+
+            quantity:quantity,
+            price:price,
+
+            subtotalUSD:
+            subtotalUSD.toFixed(2),
+
+            vatUSD:
+            vatUSD.toFixed(2),
+
+            totalUSD:
+            totalUSD.toFixed(2),
+
+            totalBHD:
+            totalBHD.toFixed(3),
+
+            name:
+            document.getElementById("name").value,
+
+            age:
+            document.getElementById("age").value
+        })
+    })
+    .then(() => {
+
+        document.getElementById("result").innerHTML =
+        "✅ Submitted Successfully";
+
+        document.getElementById("studentForm").reset();
+
+        updateCalculation();
+    })
+    .catch(err => {
+
+        document.getElementById("result").innerHTML =
+        "❌ " + err;
+
+    });
+
 });
-});
+
 </script>
 
 </body>
