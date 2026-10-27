@@ -5,43 +5,48 @@
 
     <style>
         body{
-            font-family:Arial,sans-serif;
-            max-width:600px;
-            margin:auto;
-            padding:20px;
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
         }
 
         input{
-            width:100%;
-            padding:10px;
-            margin:5px 0;
-            box-sizing:border-box;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
         }
 
         button{
-            padding:12px;
-            width:100%;
-            background:#0078d7;
-            color:white;
-            border:none;
-            cursor:pointer;
+            width: 100%;
+            padding: 12px;
+            background: #0078d7;
+            color: white;
+            border: none;
+            cursor: pointer;
         }
 
         button:hover{
-            background:#005ea6;
+            background: #005ea6;
         }
 
         #calculation{
-            margin-top:15px;
-            padding:15px;
-            border:1px solid #ddd;
-            border-radius:8px;
-            background:#f8f8f8;
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f8f8f8;
         }
 
         .total{
-            color:green;
-            font-size:20px;
+            color: green;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #result{
+            margin-top:15px;
             font-weight:bold;
         }
     </style>
@@ -91,16 +96,16 @@ const USD_TO_BHD = 0.376;
 
 function updateCalculation(){
 
-    let quantity =
+    const quantity =
         Number(document.getElementById("quantity").value) || 0;
 
-    let price =
+    const price =
         Number(document.getElementById("price").value) || 0;
 
-    let subtotalUSD = quantity * price;
-    let vatUSD = subtotalUSD * VAT_RATE;
-    let totalUSD = subtotalUSD + vatUSD;
-    let totalBHD = totalUSD * USD_TO_BHD;
+    const subtotalUSD = quantity * price;
+    const vatUSD = subtotalUSD * VAT_RATE;
+    const totalUSD = subtotalUSD + vatUSD;
+    const totalBHD = totalUSD * USD_TO_BHD;
 
     document.getElementById("subtotal").innerText =
         "$" + subtotalUSD.toFixed(2);
@@ -126,22 +131,23 @@ document.getElementById("studentForm")
 
     e.preventDefault();
 
-    let quantity =
+    const quantity =
         Number(document.getElementById("quantity").value);
 
-    let price =
+    const price =
         Number(document.getElementById("price").value);
 
-    let subtotalUSD = quantity * price;
-    let vatUSD = subtotalUSD * VAT_RATE;
-    let totalUSD = subtotalUSD + vatUSD;
-    let totalBHD = totalUSD * USD_TO_BHD;
+    const subtotalUSD = quantity * price;
+    const vatUSD = subtotalUSD * VAT_RATE;
+    const totalUSD = subtotalUSD + vatUSD;
+    const totalBHD = totalUSD * USD_TO_BHD;
 
     fetch(
     "https://script.google.com/macros/s/AKfycbyMmexf3ODHld00RbjPCtqgE5tmNHFd-7b4Q63aAFN42YOsNYd4tP0MnTCMh2qXbZ9N/exec",
     {
-        method:"POST",
-        body:JSON.stringify({
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify({
 
             requester:
             document.getElementById("requester").value,
@@ -152,8 +158,9 @@ document.getElementById("studentForm")
             item:
             document.getElementById("item").value,
 
-            quantity:quantity,
-            price:price,
+            quantity: quantity,
+
+            price: price,
 
             subtotalUSD:
             subtotalUSD.toFixed(2),
@@ -165,28 +172,24 @@ document.getElementById("studentForm")
             totalUSD.toFixed(2),
 
             totalBHD:
-            totalBHD.toFixed(3),
+            totalBHD.toFixed(3)
 
-            name:
-            document.getElementById("name").value,
-
-            age:
-            document.getElementById("age").value
         })
     })
     .then(() => {
 
         document.getElementById("result").innerHTML =
-        "✅ Submitted Successfully";
+            "✅ Submitted Successfully";
 
         document.getElementById("studentForm").reset();
 
         updateCalculation();
+
     })
-    .catch(err => {
+    .catch(error => {
 
         document.getElementById("result").innerHTML =
-        "❌ " + err;
+            "❌ Error: " + error;
 
     });
 
