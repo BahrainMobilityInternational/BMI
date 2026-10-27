@@ -1,93 +1,194 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Purchase Request Form</title>
+<title>Purchase Request Form</title>
 
-    <style>
-        body{
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-        }
+<style>
 
-        input{
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            box-sizing: border-box;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        button{
-            width: 100%;
-            padding: 12px;
-            background: #0078d7;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    min-height:100vh;
+    padding:40px 20px;
+}
 
-        button:hover{
-            background: #005ea6;
-        }
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
 
-        #calculation{
-            margin-top: 15px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background: #f8f8f8;
-        }
+.logo{
+    text-align:center;
+    font-size:50px;
+    margin-bottom:10px;
+}
 
-        .total{
-            color: green;
-            font-size: 20px;
-            font-weight: bold;
-        }
+h2{
+    text-align:center;
+    color:#0f172a;
+    margin-bottom:25px;
+}
 
-        #result{
-            margin-top:15px;
-            font-weight:bold;
-        }
-    </style>
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:5px;
+    font-weight:600;
+    color:#334155;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:2px solid #e2e8f0;
+    border-radius:10px;
+    font-size:15px;
+    transition:0.3s;
+}
+
+input:focus{
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 10px rgba(37,99,235,.15);
+}
+
+#calculation{
+    margin-top:25px;
+    padding:20px;
+    border-radius:15px;
+    background:#f8fafc;
+    border:2px solid #e2e8f0;
+}
+
+#calculation h3{
+    color:#0f172a;
+    margin-bottom:15px;
+}
+
+#calculation p{
+    margin:10px 0;
+    font-size:16px;
+}
+
+.total{
+    margin-top:15px;
+    background:#dcfce7;
+    color:#166534;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+#result{
+    margin-top:20px;
+    text-align:center;
+    font-weight:bold;
+    font-size:18px;
+    color:green;
+}
+
+.footer{
+    text-align:center;
+    margin-top:20px;
+    color:#64748b;
+    font-size:13px;
+}
+
+</style>
+
 </head>
 
 <body>
+
+<div class="container">
+
+<div class="logo">🛒</div>
 
 <h2>Purchase Request Form</h2>
 
 <form id="studentForm">
 
-    <input type="text" id="requester" placeholder="Requester Name" required>
+<label>Requester Name</label>
+<input type="text" id="requester" required>
 
-    <input type="text" id="department" placeholder="Department" required>
+<label>Department</label>
+<input type="text" id="department" required>
 
-    <input type="text" id="item" placeholder="Item Name" required>
+<label>Item Name</label>
+<input type="text" id="item" required>
 
-    <input type="number" id="quantity" placeholder="Quantity" min="1" required>
+<label>Quantity</label>
+<input type="number" id="quantity" min="1" required>
 
-    <input type="number" id="price" placeholder="Price USD" step="0.01" required>
+<label>Price (USD)</label>
+<input type="number" id="price" step="0.01" required>
 
-    <div id="calculation">
-        <h3>Live Calculation</h3>
+<div id="calculation">
 
-        <p>Subtotal USD: <strong id="subtotal">$0.00</strong></p>
-        <p>VAT (10%): <strong id="vat">$0.00</strong></p>
-        <p>Total USD: <strong id="totalusd">$0.00</strong></p>
+<h3>Live Calculation</h3>
 
-        <p class="total">
-            Total BHD:
-            <span id="totalbhd">0.000 BHD</span>
-        </p>
-    </div>
+<p>Subtotal USD:
+<strong id="subtotal">$0.00</strong>
+</p>
 
-    <br>
+<p>VAT (10%):
+<strong id="vat">$0.00</strong>
+</p>
 
-    <button type="submit">Save</button>
+<p>Total USD:
+<strong id="totalusd">$0.00</strong>
+</p>
+
+<div class="total">
+Total BHD:
+<span id="totalbhd">0.000 BHD</span>
+</div>
+
+</div>
+
+<button type="submit">
+💾 Save Request
+</button>
 
 </form>
 
-<p id="result"></p>
+<div id="result"></div>
+
+<div class="footer">
+Purchase Request System
+</div>
+
+</div>
 
 <script>
 
@@ -97,10 +198,10 @@ const USD_TO_BHD = 0.376;
 function updateCalculation(){
 
     const quantity =
-        Number(document.getElementById("quantity").value) || 0;
+    Number(document.getElementById("quantity").value) || 0;
 
     const price =
-        Number(document.getElementById("price").value) || 0;
+    Number(document.getElementById("price").value) || 0;
 
     const subtotalUSD = quantity * price;
     const vatUSD = subtotalUSD * VAT_RATE;
@@ -108,16 +209,16 @@ function updateCalculation(){
     const totalBHD = totalUSD * USD_TO_BHD;
 
     document.getElementById("subtotal").innerText =
-        "$" + subtotalUSD.toFixed(2);
+    "$" + subtotalUSD.toFixed(2);
 
     document.getElementById("vat").innerText =
-        "$" + vatUSD.toFixed(2);
+    "$" + vatUSD.toFixed(2);
 
     document.getElementById("totalusd").innerText =
-        "$" + totalUSD.toFixed(2);
+    "$" + totalUSD.toFixed(2);
 
     document.getElementById("totalbhd").innerText =
-        totalBHD.toFixed(3) + " BHD";
+    totalBHD.toFixed(3) + " BHD";
 }
 
 document.getElementById("quantity")
@@ -129,69 +230,72 @@ document.getElementById("price")
 document.getElementById("studentForm")
 .addEventListener("submit", function(e){
 
-    e.preventDefault();
+e.preventDefault();
 
-    const quantity =
-        Number(document.getElementById("quantity").value);
+const quantity =
+Number(document.getElementById("quantity").value);
 
-    const price =
-        Number(document.getElementById("price").value);
+const price =
+Number(document.getElementById("price").value);
 
-    const subtotalUSD = quantity * price;
-    const vatUSD = subtotalUSD * VAT_RATE;
-    const totalUSD = subtotalUSD + vatUSD;
-    const totalBHD = totalUSD * USD_TO_BHD;
+const subtotalUSD = quantity * price;
+const vatUSD = subtotalUSD * VAT_RATE;
+const totalUSD = subtotalUSD + vatUSD;
+const totalBHD = totalUSD * USD_TO_BHD;
 
-    fetch(
-    "https://script.google.com/macros/s/AKfycbyMmexf3ODHld00RbjPCtqgE5tmNHFd-7b4Q63aAFN42YOsNYd4tP0MnTCMh2qXbZ9N/exec",
-    {
-        method: "POST",
-        mode: "no-cors",
-        body: JSON.stringify({
+fetch(
+"https://script.google.com/macros/s/AKfycbyMmexf3ODHld00RbjPCtqgE5tmNHFd-7b4Q63aAFN42YOsNYd4tP0MnTCMh2qXbZ9N/exec",
+{
+method:"POST",
+mode:"no-cors",
+body:JSON.stringify({
 
-            requester:
-            document.getElementById("requester").value,
+requester:
+document.getElementById("requester").value,
 
-            department:
-            document.getElementById("department").value,
+department:
+document.getElementById("department").value,
 
-            item:
-            document.getElementById("item").value,
+item:
+document.getElementById("item").value,
 
-            quantity: quantity,
+quantity:quantity,
 
-            price: price,
+price:price,
 
-            subtotalUSD:
-            subtotalUSD.toFixed(2),
+subtotalUSD:
+subtotalUSD.toFixed(2),
 
-            vatUSD:
-            vatUSD.toFixed(2),
+vatUSD:
+vatUSD.toFixed(2),
 
-            totalUSD:
-            totalUSD.toFixed(2),
+totalUSD:
+totalUSD.toFixed(2),
 
-            totalBHD:
-            totalBHD.toFixed(3)
+totalBHD:
+totalBHD.toFixed(3)
 
-        })
-    })
-    .then(() => {
+})
+}
+)
 
-        document.getElementById("result").innerHTML =
-            "✅ Submitted Successfully";
+.then(() => {
 
-        document.getElementById("studentForm").reset();
+document.getElementById("result").innerHTML =
+"✅ Purchase Request Submitted Successfully";
 
-        updateCalculation();
+document.getElementById("studentForm").reset();
 
-    })
-    .catch(error => {
+updateCalculation();
 
-        document.getElementById("result").innerHTML =
-            "❌ Error: " + error;
+})
 
-    });
+.catch((error) => {
+
+document.getElementById("result").innerHTML =
+"❌ Error: " + error;
+
+});
 
 });
 
